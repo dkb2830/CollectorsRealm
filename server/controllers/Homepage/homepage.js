@@ -3,4 +3,3 @@ module.exports.index = (request, response) => {  //We are exporting a key:val pa
         message: "Welcome to Collectors Realm"
     });
 }
-
