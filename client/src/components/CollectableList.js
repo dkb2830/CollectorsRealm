@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import axios from 'axios';
 import { Link } from '@reach/router';
 
-function CollectableList(props) {
+const CollectableList = (props) => {
     /* We deconstruct getter and setter which were passed down
     via props by the parent component (app.js) to our child
     component (PersonList.js). Now we can easily use the getter
@@ -27,6 +27,7 @@ function CollectableList(props) {
                 return <>
                     <h2 key={index}>{c.name}</h2>
                     <p>{c.description}</p>
+                    <Link to={`/collectable/${collectable._id}`}>View</Link>
                 </>;
             })}
         </div>

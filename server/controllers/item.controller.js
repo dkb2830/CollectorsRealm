@@ -25,9 +25,9 @@ module.exports.getAllCollectables = (request, response) => {
         })
 }
 
-module.exports.getPerson = (request, response) => {
-    Person.findOne({_id:request.params.id})
-        .then(person => response.json(person))
+module.exports.getCollectable = (request, response) => {
+    Collectable.findOne({_id:request.params.id})
+        .then(collectable => response.json(collectable))
         .catch(err => response.json(err))
 }
 
