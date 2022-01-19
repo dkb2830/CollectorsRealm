@@ -6,7 +6,7 @@ function App() {
   return (
     <div>
       <Router>
-        <Main path="/" />
+        <Main path="/" default/>
       </Router>
     </div>
   );

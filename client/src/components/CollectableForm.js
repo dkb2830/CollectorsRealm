@@ -6,7 +6,7 @@ const CollectableForm = (props) => {
     const [description, setDescription] = useState("");
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8000/api/collectables', {
+        axios.post('http://localhost:8000/api/collectable', {
             name,    
             description  
         })
