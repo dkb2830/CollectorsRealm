@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 const Detail = (props) => {
     const [collectable, setCollectable] = useState({})
-    //const {id} = props; 
 // Reach router creates a key:value pair inside of our props object 
 //     for every variable found inside the "path" attribute. 
 // For example, the "path" attribute of the Detail component (Code Block 3 - App.js).   

@@ -31,6 +31,22 @@ module.exports.getCollectable = (request, response) => {
         .catch(err => response.json(err))
 }
 
+module.exports.updateCollectable = (request, response) => {
+    Collectable.findOneAndUpdate({_id: request.params.id}, request.body, {new:true})
+    .then(updatedCollectable => response.json(updatedCollectable))
+    .catch(err => response.json(err))
+}
+
+module.exports.deleteCollectable = (request, response) => {
+    Collectable.deleteOne({ _id: request.params.id }) //note: "id" here MUST match id in corresponding route
+        .then(deleteConfirmation => response.json(deleteConfirmation))
+        .catch(err => response.json(err))
+}
+
+
+
+
+
 
 
 
