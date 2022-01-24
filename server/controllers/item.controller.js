@@ -1,22 +1,33 @@
-const Collectable = require('../models/item.model');    /* this is new */
+const Collectable = require('../models/item.model'); 
+const Comment = require('../models/comment.model');
 module.exports.index = (request, response) => {
     response.json({
         message: "Hello! Welcome to the Collector's Realm"
     });
 }
-          /* The method below is new */
 module.exports.createCollectable = (request, response) => {
-// Mongoose's "create" method is run using our Person model to add a new person to our db's person collection.
-// request.body will contain something like {firstName: "Billy", lastName: "Washington"} from the client
-    Collectable.create(request.body) //This will use whatever the body of the client's request sends over
-        .then(collectable => response.json(collectable))
-        .catch(err => response.json(err));
+        const {name, description} = request.body;
+        Collectable.create({
+            name: name,
+            description: description
+        })
+    
+   // Collectable.create(request.body) 
+            .then(collectable => response.json(collectable))
+            .catch(err => response.status(400).json(err))
+}
+
+module.exports.commentsOnCollectable = async (request, response) => {
+    const { id } = request.params;
+    const collectable = await Collectable.findById(id).populate('comments');
+
+    response.send(collectable.comments);
 }
 
 module.exports.getAllCollectables = (request, response) => {
     Collectable.find({})
         .then(collectables => {
-            console.log(collectables); //console logs are optional, but they are highly recommended for troubleshooting!
+            console.log(collectables); 
             response.json(collectables);
         })
         .catch(err => {
@@ -28,7 +39,7 @@ module.exports.getAllCollectables = (request, response) => {
 module.exports.getCollectable = (request, response) => {
     Collectable.findOne({_id:request.params.id})
         .then(collectable => response.json(collectable))
-        .catch(err => response.json(err))
+        .catch(err => response.json(err))        
 }
 
 module.exports.updateCollectable = (request, response) => {
@@ -38,9 +49,21 @@ module.exports.updateCollectable = (request, response) => {
 }
 
 module.exports.deleteCollectable = (request, response) => {
-    Collectable.deleteOne({ _id: request.params.id }) //note: "id" here MUST match id in corresponding route
-        .then(deleteConfirmation => response.json(deleteConfirmation))
-        .catch(err => response.json(err))
+    Collectable.deleteOne({ _id: request.params.id })
+        .then(deleteConfirmation => response.json(deleteConfirmation))
+        .catch(err => response.json(err))
+}
+
+module.exports.getAllComments = (request, response) => {
+    Comment.find({})
+        .then(comments => {
+            console.log(comments); 
+            response.json(comments);
+        })
+        .catch(err => {
+            console.log(err)
+            response.json(err)
+        })
 }
 
 

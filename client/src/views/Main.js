@@ -1,19 +1,29 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import CollectableForm from '../components/CollectableForm';
 import CollectableList from '../components/CollectableList';
-const Main = (props) => {
-    
+const Main = () => {
     const [collectable, setCollectable] = useState([]);
+    const [loaded, setLoaded] = useState(false);
+
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/collectable')
+            .then(res => {
+                setCollectable(res.data);
+                setLoaded(true);
+            })
+    }, [])
+
     const removeFromDom = collectableId => {
-        setCollectable(collectable.filter(collectable => collectable._id !== collectableId)); //We could also write this in our PersonList component
+        setCollectable(collectable.filter(collectable => collectable._id !== collectableId));
     }
     return (
         <div>
-            <CollectableForm collectable={collectable} setCollectable={setCollectable} />
+            <h1>Welcome to Collector's Realm!</h1>
+            <h2>Enter your collectables here</h2>
+            <CollectableForm />
             <hr/>
-            <CollectableList collectable={collectable} setCollectable={setCollectable} removeFromDom={removeFromDom} />
-
+            {loaded && <CollectableList collectable={collectable} removeFromDom={removeFromDom} />}
         </div>
     )
 }

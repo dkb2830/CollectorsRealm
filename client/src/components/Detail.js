@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import CommentForm from './CommentForm';
+import CommentList from './CommentList';
+import {Link} from '@reach/router';
 const Detail = (props) => {
     const [collectable, setCollectable] = useState({})
-// Reach router creates a key:value pair inside of our props object 
-//     for every variable found inside the "path" attribute. 
-// For example, the "path" attribute of the Detail component (Code Block 3 - App.js).   
-// We can deconstruct the id from props.
-// The unique part of our "path" (:id) will have its value 
-//    assigned in the Link element's "to" attribute (e.g. Code Block 4)
+    const [comment,setComment] = useState({})
     useEffect(() => {
         axios.get("http://localhost:8000/api/collectable/" + props.id)
             .then( res => {
@@ -17,10 +15,14 @@ const Detail = (props) => {
             .catch( err => console.log(err) )
     }, [])//eslint-disable-line react-hooks/exhaustive-deps
     return (
-        <div>
+        <><Link to={"/"}>Back to Home</Link><div>
             <p>Name: {collectable.name}</p>
             <p>Description: {collectable.description}</p>
-        </div>
+            <hr />
+            <CommentForm />
+            <hr />
+
+        </div></>
     )
 }
 export default Detail;

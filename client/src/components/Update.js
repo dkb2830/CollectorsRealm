@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 const Update = (props) => {
-    const { id } = props; //this process is identical to the one we used with our Details.js component
+    const { id } = props; 
     const [name, setName] = useState();
     const [description, setDescription] = useState();
-    // retrieve the current values for this person so we can fill
-    // in the form with what is in the db currently
     useEffect(() => {
         axios.get('http://localhost:8000/api/collectable/' + id)
             .then(res => {
@@ -17,8 +15,8 @@ const Update = (props) => {
     const updateCollectable = (e) => {
         e.preventDefault();
         axios.put('http://localhost:8000/api/collectable/' + id, {
-            name,    // this is shortcut syntax for firstName: firstName,
-            description      // this is shortcut syntax for lastName: lastName
+            name,   
+            description     
         })
             .then(res => console.log(res));
     }

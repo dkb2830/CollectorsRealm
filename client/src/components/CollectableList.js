@@ -1,19 +1,23 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import axios from 'axios';
 import {Link} from '@reach/router';
 const CollectableList = (props) => {
-    /* We deconstruct getter and setter which were passed down 
-    via props by the parent component (app.js) to our child 
-    component (PersonList.js). Now we can easily use the getter 
-    and setter without having to write props.getter or props.setter every time: */
-    const {removeFromDom, collectable, setCollectable} = props;
+    //const [ collectableList, setCollectableList] = useState("");
+    //useEffect(() =>{
+       // axios.get('http://localhost:8000/api/collectable') 
+       // .then(res => 
+         //   setCollectableList({...res.data
+           //     }))        
+    //},[])
+    const {removeFromDom, collectable} = props;
     const deleteCollectable = (collectableId) => {
         axios.delete('http://localhost:8000/api/collectable/' + collectableId)
             .then(res => {
-                removeFromDom(collectableId)
+                removeFromDom(collectableId);
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err));
     }
+                
     return (
         <div>
             {
