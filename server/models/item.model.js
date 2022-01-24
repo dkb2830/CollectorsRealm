@@ -10,10 +10,11 @@ const CollectableSchema = new mongoose.Schema({
         true,
         "Description is required"
     ] },
-    comment:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref: "Comment",
-    },
+    comment: { type: Array},
+   // comment:{
+       // type:mongoose.Schema.Types.ObjectId,
+        //ref: "Comment",
+    //},
 
 }, { timestamps: true });
 module.exports = mongoose.model('Collectable', CollectableSchema);

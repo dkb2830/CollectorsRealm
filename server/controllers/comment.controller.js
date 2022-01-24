@@ -11,19 +11,28 @@ module.exports.createComment = async function (request, response) {
     console.log(request.params);
     collectable = request.params;
     id = collectable.id;
-    const { collectable_comment } = request.body;
-    const comment = await Comment.create({
-        collectable_comment,
-        collectable:id
-    });
-    await comment.save();
-
+    const  collectable_comment  = request.body;
+    console.log(collectable_comment)
+    // const comment = await Comment.create({
+    //     collectable_comment,
+    //     collectable:id
+    // });
+    // await comment.save();
     const collectableById = await Collectable.findById(id);
-
-    collectableById.comments.push(comment);
+    console.log(collectableById);
+    collectableById.comment.push(collectable_comment);
     await collectableById.save();
+    Collectable.findOneAndUpdate({_id: request.params.id}, request.body,  {new:true})
+    .then(updatedCollectable => response.json(updatedCollectable))
+    .catch(err => response.json(err))
 
-    return response.send(collectableById);
+
+    // const collectableById = await Collectable.findById(id);
+
+    // collectableById.comments.push(comment);
+    // await collectableById.save();
+
+    // return response.send(collectableById);
 }
 
 module.exports.getAllComments = (request, response) => {

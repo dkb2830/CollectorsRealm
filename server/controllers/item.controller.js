@@ -20,8 +20,10 @@ module.exports.createCollectable = (request, response) => {
 module.exports.commentsOnCollectable = async (request, response) => {
     const { id } = request.params;
     const collectable = await Collectable.findById(id).populate('comments');
-
+    console.log("dkb");
+    console.log(response);
     response.send(collectable.comments);
+
 }
 
 module.exports.getAllCollectables = (request, response) => {

@@ -21,7 +21,7 @@ const Detail = (props) => {
             <hr />
             <CommentForm />
             <hr />
-
+            
         </div></>
     )
 }
