@@ -20,7 +20,7 @@ const Main = () => {
     return (
         <div>
             <h1>Welcome to Collector's Realm!</h1>
-            <h2>Enter your collectables here</h2>
+            <h2>Enter Your Collectables Here</h2>
             <CollectableForm />
             <hr/>
             {loaded && <CollectableList collectable={collectable} removeFromDom={removeFromDom} />}

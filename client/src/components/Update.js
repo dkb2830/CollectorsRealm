@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import {Link} from '@reach/router';
 const Update = (props) => {
     const { id } = props; 
     const [name, setName] = useState();
@@ -22,6 +23,7 @@ const Update = (props) => {
     }
     return (
         <div>
+            <Link to={"/"}>Back to Home</Link>
             <h1>Update Collectable Item</h1>
             <form onSubmit={updateCollectable}>
                 <p>

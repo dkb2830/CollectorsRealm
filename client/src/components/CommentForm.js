@@ -3,10 +3,9 @@ import axios from 'axios';
 const CommentForm = (props) => {
     const {item_comment, setComment} = props;
     const [commentText, setCommentText] = useState("");
-    const [collectable_id] = useState("")
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8000/api/collectable/' + collectable_id, {
+        axios.post('http://localhost:8000/api/collectable/', {
             commentText  
         })
             .then(res=>{

@@ -6,10 +6,11 @@ module.exports.index = (request, response) => {
     });
 }
 module.exports.createCollectable = (request, response) => {
-        const {name, description} = request.body;
+        const {name, description, comment} = request.body;
         Collectable.create({
             name: name,
-            description: description
+            description: description,
+            comment: comment
         })
     
    // Collectable.create(request.body) 

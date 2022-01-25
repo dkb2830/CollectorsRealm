@@ -26,13 +26,8 @@ const CollectableList = (props) => {
                 <div key={index}> 
                     <h2>{c.name}</h2> 
                     <p>{c.description}</p>
-                    <Link to={`/collectable/${c._id}`}>View Collectable</Link>
-                    |
-                    <Link to={"/collectable/edit/" + c._id}>Edit</Link>
-                    |
-                    <button onClick={(e)=>{deleteCollectable(c._id)}}>
-                            Delete
-                    </button>
+                    <Link to={`/collectable/${c._id}`} className='link'>View Collectable</Link>|<Link to={"/collectable/edit/" + c._id} className='link'>Edit</Link>|<button onClick={(e)=>{deleteCollectable(c._id)}}>Delete</button>
+                    <br/>
                 </div> 
 )})
             }
